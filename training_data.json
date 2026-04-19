@@ -1,32 +1,12 @@
 [
   {
-    "input": "penting",
-    "target": "penting",
-    "normalized_score": 0.0
+    "input": "pada",
+    "target": "bagja",
+    "normalized_score": 1.0
   },
   {
-    "input": "jalan",
-    "target": "jalan",
-    "normalized_score": 0.0
-  },
-  {
-    "input": "dana",
-    "target": "dana",
-    "normalized_score": 0.0
-  },
-  {
-    "input": "delapan",
-    "target": "dalapan",
-    "normalized_score": 0.8571
-  },
-  {
-    "input": "kaki",
-    "target": "kaku",
-    "normalized_score": 0.75
-  },
-  {
-    "input": "bisa",
-    "target": "bisa",
+    "input": "berpikir",
+    "target": "berpikir",
     "normalized_score": 0.0
   },
   {
@@ -35,18 +15,38 @@
     "normalized_score": 0.0
   },
   {
-    "input": "secara",
-    "target": "sacara",
+    "input": "berangkat",
+    "target": "perangkat",
+    "normalized_score": 0.1111
+  },
+  {
+    "input": "masuk",
+    "target": "masak",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "tugas",
+    "target": "tugas",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "tiga",
+    "target": "siga",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "tokyo",
+    "target": "tokoh",
     "normalized_score": 1.2
   },
   {
-    "input": "datang",
-    "target": "gancang",
-    "normalized_score": 1.5
+    "input": "kaki",
+    "target": "kaku",
+    "normalized_score": 0.75
   },
   {
-    "input": "masalah",
-    "target": "masalah",
-    "normalized_score": 0.0
+    "input": "maka",
+    "target": "make",
+    "normalized_score": 1.5
   }
 ]
