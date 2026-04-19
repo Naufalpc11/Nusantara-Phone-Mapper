@@ -65,8 +65,10 @@ def phonetic_distance(a, b):
 from services.ipa import text_to_ipa
 
 
+LENGTH_PENALTY = 6
+
+
 def map_word(source_word, target_words):
-    print("DEBUG:", source_word, "vs", target_words[:3])
     src_phonemes = text_to_ipa(source_word)
 
     results = []
@@ -86,11 +88,19 @@ def map_word(source_word, target_words):
 
             total_score += phonetic_distance(s_vec, t_vec)
 
-        results.append((target, total_score))
+        # Penalti untuk fonem yang tidak ter-align (beda panjang kata)
+        length_diff = abs(len(src_phonemes) - len(tgt_phonemes))
+        total_score += length_diff * LENGTH_PENALTY
+
+        # Skor dinormalisasi supaya fair antara kata pendek dan panjang
+        aligned_len = max(len(src_phonemes), len(tgt_phonemes), 1)
+        normalized_score = total_score / aligned_len
+
+        results.append((target, total_score, normalized_score))
 
     if not results:
         return None
 
-    best = min(results, key=lambda x: x[1])
+    best = min(results, key=lambda x: x[2])
 
     return best
