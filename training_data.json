@@ -1,0 +1,52 @@
+[
+  {
+    "input": "penting",
+    "target": "penting",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "jalan",
+    "target": "jalan",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "dana",
+    "target": "dana",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "delapan",
+    "target": "dalapan",
+    "normalized_score": 0.8571
+  },
+  {
+    "input": "kaki",
+    "target": "kaku",
+    "normalized_score": 0.75
+  },
+  {
+    "input": "bisa",
+    "target": "bisa",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "paspor",
+    "target": "paspor",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "secara",
+    "target": "sacara",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "datang",
+    "target": "gancang",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "masalah",
+    "target": "masalah",
+    "normalized_score": 0.0
+  }
+]
