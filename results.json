@@ -1,248 +1,57 @@
-<<<<<<< HEAD
 {
-  "pada": {
-    "target": "bagja",
-    "score": 4,
-    "normalized_score": 1.0
+  "ruangan": {
+    "target": "ruangan",
+    "score": 0,
+    "normalized_score": 0.0
+  },
+  "terang": {
+    "target": "terang",
+    "score": 0,
+    "normalized_score": 0.0
   },
   "berpikir": {
     "target": "berpikir",
     "score": 0,
     "normalized_score": 0.0
   },
-  "paspor": {
-    "target": "paspor",
+  "miskin": {
+    "target": "miskin",
     "score": 0,
     "normalized_score": 0.0
-  },
-  "berangkat": {
-    "target": "perangkat",
-    "score": 1,
-    "normalized_score": 0.1111
-  },
-  "masuk": {
-    "target": "masak",
-    "score": 7,
-    "normalized_score": 1.4
-  },
-  "tugas": {
-    "target": "tugas",
-    "score": 0,
-    "normalized_score": 0.0
-  },
-  "tiga": {
-    "target": "siga",
-    "score": 5,
-    "normalized_score": 1.25
-  },
-  "tokyo": {
-    "target": "tokoh",
-    "score": 6,
-    "normalized_score": 1.2
   },
   "kaki": {
     "target": "kaku",
     "score": 3,
     "normalized_score": 0.75
   },
-  "maka": {
-    "target": "make",
+  "delapan": {
+    "target": "dalapan",
+    "score": 6,
+    "normalized_score": 0.8571
+  },
+  "buat": {
+    "target": "puas",
     "score": 6,
     "normalized_score": 1.5
+  },
+  "tepat": {
+    "target": "ketat",
+    "score": 7,
+    "normalized_score": 1.4
+  },
+  "pekerjaan": {
+    "target": "pedesaan",
+    "score": 10,
+    "normalized_score": 1.25
+  },
+  "gedung": {
+    "target": "gedung",
+    "score": 0,
+    "normalized_score": 0.0
+  },
+  "adanya": {
+    "target": "calana",
+    "score": 5,
+    "normalized_score": 1.0
   }
-=======
-{
-  "tidak": [
-    "tina",
-    5
-  ],
-  "tinggi": [
-    "tinggi",
-    0
-  ],
-  "pukul": [
-    "buku",
-    1
-  ],
-  "bila": [
-    "dilalajoan",
-    4
-  ],
-  "suka": [
-    "sukarno",
-    0
-  ],
-  "mengemis": [
-    "wae",
-    7
-  ],
-  "sapporo": [
-    "sae",
-    5
-  ],
-  "tahu": [
-    "tahun",
-    0
-  ],
-  "pun": [
-    "pindah",
-    3
-  ],
-  "menaiki": [
-    "mana",
-    6
-  ],
-  "meminjam": [
-    "wae",
-    7
-  ],
-  "miskin": [
-    "miskin",
-    0
-  ],
-  "suci": [
-    "supaya",
-    0
-  ],
-  "dapat": [
-    "babaturan",
-    5
-  ],
-  "terang": [
-    "terang",
-    0
-  ],
-  "besar": [
-    "tes",
-    5
-  ],
-  "belakangan": [
-    "pola",
-    4
-  ],
-  "juga": [
-    "utama",
-    4
-  ],
-  "berjalan": [
-    "beda",
-    5
-  ],
-  "tersebut": [
-    "tes",
-    6
-  ],
-  "yang": [
-    "anggaran",
-    0
-  ],
-  "cara": [
-    "cara",
-    0
-  ],
-  "ditemukan": [
-    "tipe",
-    5
-  ],
-  "kotor": [
-    "gotong",
-    6
-  ],
-  "bertemu": [
-    "wae",
-    7
-  ],
-  "ada": [
-    "atanapi",
-    1
-  ],
-  "aku": [
-    "aktivitas",
-    3
-  ],
-  "hampir": [
-    "hawa",
-    7
-  ],
-  "dan": [
-    "dana",
-    0
-  ],
-  "sedikit": [
-    "seni",
-    5
-  ],
-  "ini": [
-    "inpormasi",
-    0
-  ],
-  "tugas": [
-    "tugas",
-    0
-  ],
-  "luar": [
-    "luar",
-    0
-  ],
-  "kalau": [
-    "kana",
-    5
-  ],
-  "dalam": [
-    "dana",
-    5
-  ],
-  "katamu": [
-    "gas",
-    6
-  ],
-  "asuransi": [
-    "anu",
-    6
-  ],
-  "roti": [
-    "rock",
-    3
-  ],
-  "keduanya": [
-    "teu",
-    5
-  ],
-  "mengatakan": [
-    "wae",
-    7
-  ],
-  "berbeda": [
-    "wae",
-    7
-  ],
-  "mendengar": [
-    "mindeng",
-    5
-  ],
-  "kota": [
-    "kota",
-    0
-  ],
-  "ruangan": [
-    "ruangan",
-    0
-  ],
-  "melihat": [
-    "milih",
-    5
-  ],
-  "maha": [
-    "mah",
-    0
-  ],
-  "memakai": [
-    "wae",
-    7
-  ],
-  "manna": [
-    "mas",
-    6
-  ]
->>>>>>> 7688b6479ef43ba9a09e9d2e459bbf63d590dfab
 }

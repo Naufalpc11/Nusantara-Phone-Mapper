@@ -1,32 +1,29 @@
-<<<<<<< HEAD
 import json
+
 import torch
 import torch.nn as nn
+
 from services.encoder import encode_word
 
-# ========================
-# LOAD TRAINING DATA
-# ========================
+
 with open("training_data.json", encoding="utf-8") as f:
     data = json.load(f)
+
+if not data:
+    raise ValueError("training_data.json kosong. Jalankan test_dataset.py dulu.")
 
 X = torch.tensor([encode_word(d["input"]) for d in data], dtype=torch.float32)
 Y = torch.tensor([encode_word(d["target"]) for d in data], dtype=torch.float32)
 
-
-# MODEL
-
 model = nn.Sequential(
     nn.Linear(10, 32),
     nn.ReLU(),
-    nn.Linear(32, 10)
+    nn.Linear(32, 10),
 )
 
 loss_fn = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
-
-# TRAINING
 for epoch in range(200):
     pred = model(X)
     loss = loss_fn(pred, Y)
@@ -37,71 +34,3 @@ for epoch in range(200):
 
     if epoch % 50 == 0:
         print(f"Epoch {epoch}, Loss: {loss.item()}")
-=======
-from services.dataset_loader import load_tsv_sentences, extract_words
-from services.mapping_engine import map_all
-import json
-
-
-# LOAD DATASET
-
-indo_path = "./dataset/indonesia/data/validated.tsv"
-sunda_path = "./dataset/sunda/ss-corpus-su.tsv"
-
-indo_sentences = load_tsv_sentences(indo_path, limit=100)
-sunda_sentences = load_tsv_sentences(sunda_path, limit=100)
-
-indo_words = extract_words(indo_sentences)
-sunda_words = extract_words(sunda_sentences)
-
-print("INDO:", indo_words[:10])
-print("SUNDA:", sunda_words[:10])
-
-
-# MAPPING
-
-results = map_all(indo_words, sunda_words, limit=50)
-
-print("\n=== HASIL MAPPING ===")
-
-filtered_results = {}
-
-for k, v in results.items():
-    if v:
-        word, score, normalized_score = v
-
-        # filter hasil bagus (berbasis skor ter-normalisasi)
-        if normalized_score <= 1.5:
-            print(f"{k} -> {word} (score: {score}, norm: {normalized_score:.2f})")
-            filtered_results[k] = {
-                "target": word,
-                "score": score,
-                "normalized_score": round(normalized_score, 4)
-            }
-
-
-# SAVE MAPPING
-
-with open("results.json", "w", encoding="utf-8") as f:
-    json.dump(filtered_results, f, indent=2, ensure_ascii=False)
-
-print("\n✅ Hasil disimpan ke results.json")
-
-
-# BUAT TRAINING DATA
-
-training_data = []
-
-for src, mapping in filtered_results.items():
-    training_data.append({
-        "input": src,
-        "target": mapping["target"],
-        "normalized_score": mapping["normalized_score"]
-    })
-
-# simpan training data
-with open("training_data.json", "w", encoding="utf-8") as f:
-    json.dump(training_data, f, indent=2, ensure_ascii=False)
-
-print("✅ Training data disimpan ke training_data.json")
->>>>>>> 7688b6479ef43ba9a09e9d2e459bbf63d590dfab

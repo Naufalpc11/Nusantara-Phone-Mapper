@@ -1,9 +1,13 @@
-<<<<<<< HEAD
 [
   {
-    "input": "pada",
-    "target": "bagja",
-    "normalized_score": 1.0
+    "input": "ruangan",
+    "target": "ruangan",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "terang",
+    "target": "terang",
+    "normalized_score": 0.0
   },
   {
     "input": "berpikir",
@@ -11,34 +15,9 @@
     "normalized_score": 0.0
   },
   {
-    "input": "paspor",
-    "target": "paspor",
+    "input": "miskin",
+    "target": "miskin",
     "normalized_score": 0.0
-  },
-  {
-    "input": "berangkat",
-    "target": "perangkat",
-    "normalized_score": 0.1111
-  },
-  {
-    "input": "masuk",
-    "target": "masak",
-    "normalized_score": 1.4
-  },
-  {
-    "input": "tugas",
-    "target": "tugas",
-    "normalized_score": 0.0
-  },
-  {
-    "input": "tiga",
-    "target": "siga",
-    "normalized_score": 1.25
-  },
-  {
-    "input": "tokyo",
-    "target": "tokoh",
-    "normalized_score": 1.2
   },
   {
     "input": "kaki",
@@ -46,203 +25,33 @@
     "normalized_score": 0.75
   },
   {
-    "input": "maka",
-    "target": "make",
+    "input": "delapan",
+    "target": "dalapan",
+    "normalized_score": 0.8571
+  },
+  {
+    "input": "buat",
+    "target": "puas",
     "normalized_score": 1.5
+  },
+  {
+    "input": "tepat",
+    "target": "ketat",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "pekerjaan",
+    "target": "pedesaan",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "gedung",
+    "target": "gedung",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "adanya",
+    "target": "calana",
+    "normalized_score": 1.0
   }
-=======
-[
-  {
-    "input": "tidak",
-    "target": "tina"
-  },
-  {
-    "input": "tinggi",
-    "target": "tinggi"
-  },
-  {
-    "input": "pukul",
-    "target": "buku"
-  },
-  {
-    "input": "bila",
-    "target": "dilalajoan"
-  },
-  {
-    "input": "suka",
-    "target": "sukarno"
-  },
-  {
-    "input": "mengemis",
-    "target": "wae"
-  },
-  {
-    "input": "sapporo",
-    "target": "sae"
-  },
-  {
-    "input": "tahu",
-    "target": "tahun"
-  },
-  {
-    "input": "pun",
-    "target": "pindah"
-  },
-  {
-    "input": "menaiki",
-    "target": "mana"
-  },
-  {
-    "input": "meminjam",
-    "target": "wae"
-  },
-  {
-    "input": "miskin",
-    "target": "miskin"
-  },
-  {
-    "input": "suci",
-    "target": "supaya"
-  },
-  {
-    "input": "dapat",
-    "target": "babaturan"
-  },
-  {
-    "input": "terang",
-    "target": "terang"
-  },
-  {
-    "input": "besar",
-    "target": "tes"
-  },
-  {
-    "input": "belakangan",
-    "target": "pola"
-  },
-  {
-    "input": "juga",
-    "target": "utama"
-  },
-  {
-    "input": "berjalan",
-    "target": "beda"
-  },
-  {
-    "input": "tersebut",
-    "target": "tes"
-  },
-  {
-    "input": "yang",
-    "target": "anggaran"
-  },
-  {
-    "input": "cara",
-    "target": "cara"
-  },
-  {
-    "input": "ditemukan",
-    "target": "tipe"
-  },
-  {
-    "input": "kotor",
-    "target": "gotong"
-  },
-  {
-    "input": "bertemu",
-    "target": "wae"
-  },
-  {
-    "input": "ada",
-    "target": "atanapi"
-  },
-  {
-    "input": "aku",
-    "target": "aktivitas"
-  },
-  {
-    "input": "hampir",
-    "target": "hawa"
-  },
-  {
-    "input": "dan",
-    "target": "dana"
-  },
-  {
-    "input": "sedikit",
-    "target": "seni"
-  },
-  {
-    "input": "ini",
-    "target": "inpormasi"
-  },
-  {
-    "input": "tugas",
-    "target": "tugas"
-  },
-  {
-    "input": "luar",
-    "target": "luar"
-  },
-  {
-    "input": "kalau",
-    "target": "kana"
-  },
-  {
-    "input": "dalam",
-    "target": "dana"
-  },
-  {
-    "input": "katamu",
-    "target": "gas"
-  },
-  {
-    "input": "asuransi",
-    "target": "anu"
-  },
-  {
-    "input": "roti",
-    "target": "rock"
-  },
-  {
-    "input": "keduanya",
-    "target": "teu"
-  },
-  {
-    "input": "mengatakan",
-    "target": "wae"
-  },
-  {
-    "input": "berbeda",
-    "target": "wae"
-  },
-  {
-    "input": "mendengar",
-    "target": "mindeng"
-  },
-  {
-    "input": "kota",
-    "target": "kota"
-  },
-  {
-    "input": "ruangan",
-    "target": "ruangan"
-  },
-  {
-    "input": "melihat",
-    "target": "milih"
-  },
-  {
-    "input": "maha",
-    "target": "mah"
-  },
-  {
-    "input": "memakai",
-    "target": "wae"
-  },
-  {
-    "input": "manna",
-    "target": "mas"
-  }
->>>>>>> 7688b6479ef43ba9a09e9d2e459bbf63d590dfab
 ]
