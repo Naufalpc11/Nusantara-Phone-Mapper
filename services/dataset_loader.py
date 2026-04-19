@@ -27,11 +27,17 @@ def load_tsv_sentences(path, limit=200):
 # ========================
 # EXTRACT WORDS
 # ========================
+import re
+
 def extract_words(sentences):
     words = set()
 
     for s in sentences:
         for w in s.lower().split():
-            words.add(w)
+            # bersihin simbol
+            w = re.sub(r'[^a-z]', '', w)
+
+            if len(w) > 2:
+                words.add(w)
 
     return list(words)
