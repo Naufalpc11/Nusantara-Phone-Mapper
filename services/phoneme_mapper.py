@@ -1,7 +1,6 @@
-# ========================
-# IPA → VECTOR
-# ========================
+# Konversi fonem ke fitur artikulasi numerik.
 def ipa_to_vector(phoneme):
+    """Ubah satu fonem menjadi vektor fitur artikulasi."""
     consonants = {
         "p": (0, 0, 0),
         "b": (0, 0, 1),
@@ -38,11 +37,9 @@ def ipa_to_vector(phoneme):
     else:
         return None
 
-
-# ========================
-# DISTANCE
-# ========================
+# Hitung jarak fitur antar dua fonem.
 def phonetic_distance(a, b):
+    """Hitung jarak fonetik antara dua vektor fonem."""
     manner_a, place_a, voice_a = a
     manner_b, place_b, voice_b = b
 
@@ -58,10 +55,6 @@ def phonetic_distance(a, b):
 
     return score
 
-
-# ========================
-# WORD MAPPING
-# ========================
 from services.ipa import text_to_ipa
 
 
@@ -69,6 +62,7 @@ LENGTH_PENALTY = 6
 
 
 def map_word(source_word, target_words):
+    """Cari kandidat target dengan skor fonetik terendah untuk satu kata sumber."""
     src_phonemes = text_to_ipa(source_word)
 
     results = []
@@ -88,11 +82,11 @@ def map_word(source_word, target_words):
 
             total_score += phonetic_distance(s_vec, t_vec)
 
-        # Penalti untuk fonem yang tidak ter-align (beda panjang kata)
+        # Penalti ini mencegah kata beda panjang terlihat terlalu mirip.
         length_diff = abs(len(src_phonemes) - len(tgt_phonemes))
         total_score += length_diff * LENGTH_PENALTY
 
-        # Skor dinormalisasi supaya fair antara kata pendek dan panjang
+        # Normalisasi supaya perbandingan adil antar panjang kata.
         aligned_len = max(len(src_phonemes), len(tgt_phonemes), 1)
         normalized_score = total_score / aligned_len
 

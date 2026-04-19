@@ -3,11 +3,16 @@ from services.mapping_engine import map_all
 import json
 
 
+DATA_LIMIT = 500
+MAPPING_LIMIT = 500
+NORMALIZED_SCORE_THRESHOLD = 1.5
+
+
 indo_path = "./dataset/indonesia/data/validated.tsv"
 sunda_path = "./dataset/sunda/ss-corpus-su.tsv"
 
-indo_sentences = load_tsv_sentences(indo_path, limit=100)
-sunda_sentences = load_tsv_sentences(sunda_path, limit=100)
+indo_sentences = load_tsv_sentences(indo_path, limit=DATA_LIMIT)
+sunda_sentences = load_tsv_sentences(sunda_path, limit=DATA_LIMIT)
 
 indo_words = extract_words(indo_sentences)
 sunda_words = extract_words(sunda_sentences)
@@ -15,7 +20,7 @@ sunda_words = extract_words(sunda_sentences)
 print("INDO:", indo_words[:10])
 print("SUNDA:", sunda_words[:10])
 
-results = map_all(indo_words, sunda_words, limit=50)
+results = map_all(indo_words, sunda_words, limit=MAPPING_LIMIT)
 
 print("\n=== HASIL MAPPING ===")
 
@@ -25,7 +30,7 @@ for k, v in results.items():
     if v:
         word, score, normalized_score = v
 
-        if normalized_score <= 1.5:
+        if normalized_score <= NORMALIZED_SCORE_THRESHOLD:
             print(f"{k} -> {word} (score: {score}, norm: {normalized_score:.2f})")
             filtered_results[k] = {
                 "target": word,
@@ -36,7 +41,7 @@ for k, v in results.items():
 with open("results.json", "w", encoding="utf-8") as f:
     json.dump(filtered_results, f, indent=2, ensure_ascii=False)
 
-print("\n✅ Hasil disimpan ke results.json")
+print("\nHasil disimpan ke results.json")
 
 training_data = []
 
@@ -50,4 +55,5 @@ for src, mapping in filtered_results.items():
 with open("training_data.json", "w", encoding="utf-8") as f:
     json.dump(training_data, f, indent=2, ensure_ascii=False)
 
-print("✅ Training data disimpan ke training_data.json")
+print("Training data disimpan ke training_data.json")
+print(f"Jumlah training pair: {len(training_data)}")

@@ -1,10 +1,9 @@
 import csv
 
 
-# ========================
-# LOAD DATASET TSV
-# ========================
+# Ambil teks dari dataset TSV multi-format.
 def load_tsv_sentences(path, limit=200):
+    """Baca TSV dan ambil kolom teks valid hingga batas data."""
     sentences = []
     text_columns = ("sentence", "transcription", "prompt")
 
@@ -15,6 +14,7 @@ def load_tsv_sentences(path, limit=200):
             if i >= limit:
                 break
 
+            # Pilih kolom teks pertama yang berisi konten.
             for col in text_columns:
                 text = row.get(col)
                 if text and text.strip():
@@ -23,13 +23,12 @@ def load_tsv_sentences(path, limit=200):
 
     return sentences
 
-
-# ========================
-# EXTRACT WORDS
-# ========================
 import re
 
+
+# Bersihkan token agar stabil untuk proses mapping/training.
 def extract_words(sentences):
+    """Ubah kalimat menjadi daftar kata unik yang sudah dibersihkan."""
     words = set()
 
     for s in sentences:

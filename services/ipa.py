@@ -1,4 +1,5 @@
 def text_to_ipa(text):
+    """Konversi kata ke representasi fonetik sederhana berbasis karakter."""
     # simplifikasi: huruf → IPA basic
     mapping = {
         "a": "a",

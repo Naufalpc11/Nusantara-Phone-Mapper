@@ -2,6 +2,7 @@ from services.phoneme_mapper import map_word
 
 
 def map_all(source_words, target_words, limit=50):
+    """Jalankan mapping untuk banyak kata sumber sampai batas tertentu."""
     results = {}
 
     for i, word in enumerate(source_words):
