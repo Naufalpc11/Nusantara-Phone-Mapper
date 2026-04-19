@@ -66,6 +66,7 @@ from services.ipa import text_to_ipa
 
 
 def map_word(source_word, target_words):
+    print("DEBUG:", source_word, "vs", target_words[:3])
     src_phonemes = text_to_ipa(source_word)
 
     results = []
@@ -80,6 +81,7 @@ def map_word(source_word, target_words):
             t_vec = ipa_to_vector(t)
 
             if not s_vec or not t_vec:
+                total_score += 10
                 continue
 
             total_score += phonetic_distance(s_vec, t_vec)
