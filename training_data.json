@@ -1,0 +1,697 @@
+[
+  {
+    "input": "asal",
+    "target": "asal",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "internet",
+    "target": "internet",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "padang",
+    "target": "pasang",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "tinggi",
+    "target": "tinggi",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "mana",
+    "target": "mana",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "suka",
+    "target": "siga",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "lupa",
+    "target": "rupa",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "kota",
+    "target": "kota",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "darimu",
+    "target": "daring",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "keluarga",
+    "target": "keluarga",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "kelola",
+    "target": "kelola",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "nyatanya",
+    "target": "nagara",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "dia",
+    "target": "dua",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "anjing",
+    "target": "anjing",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "biasa",
+    "target": "tiasa",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "jadwal",
+    "target": "asal",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "diri",
+    "target": "diri",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "pedas",
+    "target": "belas",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "pekerjaan",
+    "target": "pedesaan",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "sore",
+    "target": "sore",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "tempat",
+    "target": "tempat",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "pabrik",
+    "target": "pabrik",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "ulang",
+    "target": "urang",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "tetap",
+    "target": "tetep",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "nyalakan",
+    "target": "masakan",
+    "normalized_score": 1.4286
+  },
+  {
+    "input": "tua",
+    "target": "dua",
+    "normalized_score": 0.3333
+  },
+  {
+    "input": "resmi",
+    "target": "resep",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "goreng",
+    "target": "goreng",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "sebenarnya",
+    "target": "sabenerna",
+    "normalized_score": 1.3333
+  },
+  {
+    "input": "mary",
+    "target": "maca",
+    "normalized_score": 1.3333
+  },
+  {
+    "input": "mengajar",
+    "target": "pengacara",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "sepi",
+    "target": "nepi",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "kalender",
+    "target": "kalender",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "perlu",
+    "target": "perlu",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "harapan",
+    "target": "harapan",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "warung",
+    "target": "jarang",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "anak",
+    "target": "jarak",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "serum",
+    "target": "seru",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "tadi",
+    "target": "tapi",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "kanji",
+    "target": "kami",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "rasa",
+    "target": "rasa",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "orang",
+    "target": "urang",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "daerah",
+    "target": "daerah",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "seminggu",
+    "target": "saminggu",
+    "normalized_score": 0.75
+  },
+  {
+    "input": "bocah",
+    "target": "buah",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "bersalah",
+    "target": "berdarah",
+    "normalized_score": 1.375
+  },
+  {
+    "input": "polisi",
+    "target": "polusi",
+    "normalized_score": 0.5
+  },
+  {
+    "input": "museum",
+    "target": "museum",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "mila",
+    "target": "milah",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "siswa",
+    "target": "visa",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "berfikir",
+    "target": "berpikir",
+    "normalized_score": 0.75
+  },
+  {
+    "input": "kalangan",
+    "target": "panangan",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "main",
+    "target": "maen",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "tepat",
+    "target": "tepat",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "tamu",
+    "target": "kami",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "bahwa",
+    "target": "bahan",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "ujian",
+    "target": "ubar",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "taman",
+    "target": "nyaman",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "pelajaran",
+    "target": "pelayanan",
+    "normalized_score": 0.625
+  },
+  {
+    "input": "lebih",
+    "target": "leuwih",
+    "normalized_score": 0.4
+  },
+  {
+    "input": "berangkat",
+    "target": "perangkat",
+    "normalized_score": 0.1111
+  },
+  {
+    "input": "api",
+    "target": "abi",
+    "normalized_score": 0.3333
+  },
+  {
+    "input": "makanannya",
+    "target": "makanan",
+    "normalized_score": 1.3333
+  },
+  {
+    "input": "indonesia",
+    "target": "indonesia",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "pasar",
+    "target": "pasar",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "masih",
+    "target": "masih",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "teknologi",
+    "target": "teknologi",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "basi",
+    "target": "basa",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "informasi",
+    "target": "informasi",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "panjang",
+    "target": "pasang",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "pernah",
+    "target": "pernah",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "sini",
+    "target": "seni",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "teh",
+    "target": "teh",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "kenyang",
+    "target": "tenang",
+    "normalized_score": 0.5
+  },
+  {
+    "input": "cuaca",
+    "target": "cuaca",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "banyak",
+    "target": "badak",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "fisika",
+    "target": "fisika",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "gelas",
+    "target": "belas",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "keluar",
+    "target": "keluarga",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "praktis",
+    "target": "praktik",
+    "normalized_score": 1.1429
+  },
+  {
+    "input": "mohon",
+    "target": "pohon",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "situ",
+    "target": "situ",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "biru",
+    "target": "biru",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "laptop",
+    "target": "laptop",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "namun",
+    "target": "lamun",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "mobil",
+    "target": "mobil",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "musim",
+    "target": "musim",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "besar",
+    "target": "pasar",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "timur",
+    "target": "timun",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "jalan",
+    "target": "jalan",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "pisau",
+    "target": "pisan",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "makan",
+    "target": "makam",
+    "normalized_score": 0.8
+  },
+  {
+    "input": "paspor",
+    "target": "paspor",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "cukup",
+    "target": "cukup",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "benar",
+    "target": "bener",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "dulu",
+    "target": "dulur",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "inggris",
+    "target": "inggris",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "kartu",
+    "target": "kartu",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "asing",
+    "target": "anjing",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "pesta",
+    "target": "pesta",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "sungai",
+    "target": "eungap",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "masalah",
+    "target": "masalah",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "langit",
+    "target": "langit",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "mereka",
+    "target": "merek",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "dewasa",
+    "target": "dewasa",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "padaku",
+    "target": "badak",
+    "normalized_score": 1.1667
+  },
+  {
+    "input": "dasi",
+    "target": "nasi",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "musisi",
+    "target": "musisi",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "paham",
+    "target": "paham",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "daging",
+    "target": "daging",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "merasa",
+    "target": "merata",
+    "normalized_score": 0.8333
+  },
+  {
+    "input": "pukul",
+    "target": "buku",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "pacar",
+    "target": "mawar",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "adik",
+    "target": "jadi",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "tinggal",
+    "target": "tangkal",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "lainnya",
+    "target": "lainna",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "cinta",
+    "target": "psta",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "tahan",
+    "target": "bahan",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "samping",
+    "target": "nyambung",
+    "normalized_score": 1.4286
+  },
+  {
+    "input": "mencari",
+    "target": "menara",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "tapi",
+    "target": "tapi",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "maka",
+    "target": "makam",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "satwa",
+    "target": "tata",
+    "normalized_score": 1.25
+  },
+  {
+    "input": "kamar",
+    "target": "kamari",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "perbaris",
+    "target": "berbasis",
+    "normalized_score": 0.875
+  },
+  {
+    "input": "kurang",
+    "target": "kurang",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "bagi",
+    "target": "bagja",
+    "normalized_score": 1.5
+  },
+  {
+    "input": "dari",
+    "target": "tari",
+    "normalized_score": 0.25
+  },
+  {
+    "input": "hobi",
+    "target": "hobi",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "seumur",
+    "target": "seueur",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "kata",
+    "target": "tata",
+    "normalized_score": 0.75
+  },
+  {
+    "input": "danau",
+    "target": "dana",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "band",
+    "target": "bank",
+    "normalized_score": 1.0
+  },
+  {
+    "input": "merah",
+    "target": "merah",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "laut",
+    "target": "laut",
+    "normalized_score": 0.0
+  },
+  {
+    "input": "tahu",
+    "target": "tahun",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "senin",
+    "target": "seni",
+    "normalized_score": 1.2
+  },
+  {
+    "input": "rapat",
+    "target": "rakyat",
+    "normalized_score": 1.4
+  },
+  {
+    "input": "kuat",
+    "target": "kuat",
+    "normalized_score": 0.0
+  }
+]
