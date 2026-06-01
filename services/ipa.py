@@ -1,37 +1,41 @@
+"""Compatibility helpers for phoneme mapping.
+
+Historically this module exposed a tiny character-based IPA converter.
+It now delegates to the richer phoneme inventories in services/ipa_id.py
+and services/ipa_su.py while keeping the old text_to_ipa() API intact.
+"""
+
+from services.ipa_id import word_to_ipa as word_to_ipa_id
+from services.ipa_su import word_to_ipa_su
+
+
 def text_to_ipa(text):
-    """Konversi kata ke representasi fonetik sederhana berbasis karakter."""
-    # simplifikasi: huruf → IPA basic
-    mapping = {
-        "a": "a",
-        "i": "i",
-        "u": "u",
-        "e": "e",
-        "o": "o",
+    """Convert text to a phoneme-like sequence for scoring.
 
-        "k": "k",
-        "g": "g",
-        "t": "t",
-        "d": "d",
-        "p": "p",
-        "b": "b",
+    The output remains a list of IPA-like units so the existing scoring code
+    in phoneme_mapper.py can keep operating without further changes.
+    """
+    text = (text or "").strip().lower()
+    if not text:
+        return []
 
-        "m": "m",
-        "n": "n",
+    # Prefer Indonesian parsing because the mapper scores ID source words
+    # against Sundanese target words. For generic scoring we keep the output
+    # simple and tokenized as a list of IPA-like units.
+    ipa_text = word_to_ipa_id(text)
 
-        "s": "s",
-        "f": "f",
-        "v": "v",
-        "z": "z",
+    units = []
+    i = 0
+    while i < len(ipa_text):
+        if ipa_text[i : i + 2] in {"tʃ", "dʒ", "ɲ", "ŋ", "ʃ", "ɛ", "ə", "ɨ", "ʔ", "x"}:
+            units.append(ipa_text[i : i + 2])
+            i += 2
+        else:
+            units.append(ipa_text[i])
+            i += 1
+    return units
 
-        "r": "r",
-        "l": "l",
-        "h": "h",
-    }
 
-    result = []
-
-    for char in text.lower():
-        if char in mapping:
-            result.append(mapping[char])
-
-    return result
+def text_to_ipa_sunda(text):
+    """Convenience helper for Sundanese phoneme extraction."""
+    return word_to_ipa_su(text or "")

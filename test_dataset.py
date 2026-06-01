@@ -8,7 +8,7 @@ DATA_LIMIT = 500
 MAPPING_LIMIT = 500
 NORMALIZED_SCORE_THRESHOLD = 1.5
 INDO_WORD_LIMIT = 300
-SUNDA_WORD_LIMIT = 1500
+SUNDA_WORD_LIMIT = 700
 
 
 indo_path = "./dataset/indonesia/data/validated.tsv"
