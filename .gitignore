@@ -1,3 +1,15 @@
 # Local dataset and virtual environment
 /dataset/
+/.venv/
 /venv/
+
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# Generated pipeline artifacts
+/results.json
+/training_data.json
+/loss_history.json
+/model_baseline.pt
+/wu25l_interspeech.pdf
