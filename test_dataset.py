@@ -4,15 +4,15 @@ from services.pre_processing import extract_words
 import json
 
 
-DATA_LIMIT = 500
-MAPPING_LIMIT = 500
+DATA_LIMIT = 200000
+MAPPING_LIMIT = 200000
 NORMALIZED_SCORE_THRESHOLD = 1.5
-INDO_WORD_LIMIT = 300
-SUNDA_WORD_LIMIT = 700
+INDO_WORD_LIMIT = 200000
+SUNDA_WORD_LIMIT = 200000
 
 
-indo_path = "./dataset/indonesia/data/validated.tsv"
-sunda_path = "./dataset/Sunda/Large Sundanese ASR training data set/utt_spk_text.tsv"
+indo_path = "Nusantara-Phone-Mapper/dataset/indonesia/data/validated.tsv"
+sunda_path = "Nusantara-Phone-Mapper/dataset/sunda/sundatsv/utt_spk_text2.tsv"
 
 indo_sentences = load_tsv_sentences(indo_path, limit=DATA_LIMIT)
 sunda_sentences = load_tsv_sentences(sunda_path, limit=DATA_LIMIT)

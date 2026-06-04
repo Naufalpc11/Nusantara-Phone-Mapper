@@ -1,63 +1,83 @@
-from services.ipa_id import phoneme_sequence as phoneme_sequence_id
-from services.ipa_su import phoneme_sequence_su
+from services.ipa_id import PHONEME_ID, phoneme_sequence as phoneme_sequence_id
+from services.ipa_su import PHONEME_SU, phoneme_sequence_su
 
 
-def ipa_to_vector(phoneme):
-    """Ubah satu fonem menjadi vektor fitur artikulasi."""
-    mapping = {
-        "p": (0, 0, 0),
-        "b": (0, 0, 1),
-        "t": (0, 3, 0),
-        "d": (0, 3, 1),
-        "k": (0, 7, 0),
-        "g": (0, 7, 1),
-        "ʔ": (0, 10, 0),
-        "m": (1, 0, 1),
-        "n": (1, 3, 1),
-        "ɲ": (1, 6, 1),
-        "ŋ": (1, 7, 1),
-        "r": (2, 3, 1),
-        "f": (4, 1, 0),
-        "v": (4, 1, 1),
-        "s": (4, 3, 0),
-        "z": (4, 3, 1),
-        "ʃ": (4, 4, 0),
-        "x": (4, 7, 0),
-        "h": (4, 10, 0),
-        "tʃ": (4, 4, 0),
-        "dʒ": (4, 4, 1),
-        "w": (6, 7, 1),
-        "j": (6, 6, 1),
-        "l": (7, 3, 1),
-        "i": (0, 0, 0),
-        "e": (2, 0, 0),
-        "ɛ": (4, 0, 0),
-        "ə": (3, 1, 0),
-        "ɨ": (0, 2, 0),
-        "a": (6, 1, 0),
-        "o": (2, 2, 1),
-        "ɔ": (4, 2, 1),
-        "u": (0, 2, 1),
-    }
+IPA_INDEX_ID = {entry["ipa"]: entry for entry in PHONEME_ID.values()}
+IPA_INDEX_SU = {entry["ipa"]: entry for entry in PHONEME_SU.values()}
 
-    return mapping.get(phoneme)
+UNKNOWN_PENALTY = 10
 
-def phonetic_distance(a, b):
-    """Hitung jarak fonetik antara dua vektor fonem."""
-    manner_a, place_a, voice_a = a
-    manner_b, place_b, voice_b = b
 
-    score = 0
+def _lookup_entry(ipa_symbol, lang):
+    index = IPA_INDEX_ID if lang == "id" else IPA_INDEX_SU
+    return index.get(ipa_symbol)
 
-    if manner_a != manner_b:
-        score += 5
 
-    score += abs(place_a - place_b)
+def _coords_from_entry(entry):
+    coord = entry.get("coord") if entry else None
+    if coord is None:
+        return []
+    if coord and isinstance(coord[0], tuple):
+        return list(coord)
+    return [coord]
 
-    if voice_a != voice_b:
-        score += 1
 
-    return score
+def _anchor_coord(entry):
+    coords = _coords_from_entry(entry)
+    if not coords:
+        return None
+    entry_type = entry.get("type") if entry else None
+    if entry_type == "diphthong":
+        return coords[0]
+    if entry_type == "cluster":
+        return coords[-1]
+    return coords[0]
+
+
+def _is_vowel(entry):
+    return entry and entry.get("type") in {"vowel", "diphthong"}
+
+
+def _distance_single(coord_a, coord_b, use_vowel_priority):
+    diffs = [abs(coord_a[i] - coord_b[i]) for i in range(3)]
+    manhattan = sum(diffs)
+    hamming = sum(1 for diff in diffs if diff != 0)
+    if use_vowel_priority:
+        priority = tuple(diffs)
+    else:
+        priority = tuple(diffs)
+    return manhattan, hamming, priority
+
+
+def _phoneme_distance(entry_a, entry_b):
+    coords_a = _coords_from_entry(entry_a)
+    coords_b = _coords_from_entry(entry_b)
+
+    if not coords_a or not coords_b:
+        return UNKNOWN_PENALTY, 1, (UNKNOWN_PENALTY, UNKNOWN_PENALTY, UNKNOWN_PENALTY)
+
+    use_vowel_priority = _is_vowel(entry_a) and _is_vowel(entry_b)
+
+    if len(coords_a) == 1 and len(coords_b) == 1:
+        return _distance_single(coords_a[0], coords_b[0], use_vowel_priority)
+
+    if len(coords_a) == len(coords_b):
+        total_manhattan = 0
+        total_hamming = 0
+        total_priority = [0, 0, 0]
+        for coord_a, coord_b in zip(coords_a, coords_b):
+            manhattan, hamming, priority = _distance_single(coord_a, coord_b, use_vowel_priority)
+            total_manhattan += manhattan
+            total_hamming += hamming
+            for i in range(3):
+                total_priority[i] += priority[i]
+        return total_manhattan, total_hamming, tuple(total_priority)
+
+    anchor_a = _anchor_coord(entry_a)
+    anchor_b = _anchor_coord(entry_b)
+    if anchor_a is None or anchor_b is None:
+        return UNKNOWN_PENALTY, 1, (UNKNOWN_PENALTY, UNKNOWN_PENALTY, UNKNOWN_PENALTY)
+    return _distance_single(anchor_a, anchor_b, use_vowel_priority)
 
 LENGTH_PENALTY = 6
 LEXICAL_MAP_ID_SU = {
@@ -149,39 +169,93 @@ def map_word(source_word, target_words):
         target = LEXICAL_MAP_ID_SU[word]
         return target, 0, 0.0
 
-    src_phonemes = phoneme_sequence_id(word)
+    ranked = rank_candidates(word, target_words, top_k=1)
+    if not ranked:
+        return None
 
+    best = ranked[0]
+    return best["target"], best["score"], best["normalized_score"]
+
+
+def score_word_pair(source_word, target_word, apply_lexical=True):
+    """Hitung skor fonetik untuk satu pasangan kata."""
+    src_word = (source_word or "").lower().strip()
+    tgt_word = (target_word or "").lower().strip()
+
+    if apply_lexical:
+        lexical = LEXICAL_MAP_ID_SU.get(src_word)
+        if lexical and lexical == tgt_word:
+            return {
+                "target": tgt_word,
+                "score": 0,
+                "normalized_score": 0.0,
+                "hamming": 0,
+                "priority": (0, 0, 0),
+                "length_diff": 0,
+                "src_len": len(phoneme_sequence_id(src_word)),
+                "tgt_len": len(phoneme_sequence_su(tgt_word)),
+            }
+
+    src_phonemes = phoneme_sequence_id(src_word)
+    tgt_phonemes = phoneme_sequence_su(tgt_word)
+
+    total_manhattan = 0
+    total_hamming = 0
+    total_priority = [0, 0, 0]
+
+    aligned_len = max(len(src_phonemes), len(tgt_phonemes), 1)
+
+    for src_ipa, tgt_ipa in zip(src_phonemes, tgt_phonemes):
+        src_entry = _lookup_entry(src_ipa, "id")
+        tgt_entry = _lookup_entry(tgt_ipa, "su")
+        manhattan, hamming, priority = _phoneme_distance(src_entry, tgt_entry)
+        total_manhattan += manhattan
+        total_hamming += hamming
+        for i in range(3):
+            total_priority[i] += priority[i]
+
+    length_diff = abs(len(src_phonemes) - len(tgt_phonemes))
+    total_manhattan += length_diff * LENGTH_PENALTY
+    normalized_score = total_manhattan / aligned_len
+
+    return {
+        "target": tgt_word,
+        "score": total_manhattan,
+        "normalized_score": normalized_score,
+        "hamming": total_hamming,
+        "priority": tuple(total_priority),
+        "length_diff": length_diff,
+        "src_len": len(src_phonemes),
+        "tgt_len": len(tgt_phonemes),
+    }
+
+
+def rank_candidates(source_word, target_words, top_k=None):
+    """Urutkan kandidat target berdasarkan skor fonetik."""
     results = []
 
     for target in target_words:
-        tgt_phonemes = phoneme_sequence_su(target)
-
-        total_score = 0
-
-        aligned_len = max(len(src_phonemes), len(tgt_phonemes), 1)
-
-        for s, t in zip(src_phonemes, tgt_phonemes):
-            s_vec = ipa_to_vector(s)
-            t_vec = ipa_to_vector(t)
-
-            if not s_vec or not t_vec:
-                total_score += 10
-                continue
-
-            total_score += phonetic_distance(s_vec, t_vec)
-
-        length_diff = abs(len(src_phonemes) - len(tgt_phonemes))
-        total_score += length_diff * LENGTH_PENALTY
-        normalized_score = total_score / aligned_len
-
-        results.append((target, total_score, normalized_score))
+        scored = score_word_pair(source_word, target)
+        results.append(scored)
 
     if not results:
-        return None
+        return []
 
-    best = min(results, key=lambda x: x[2])
+    results.sort(
+        key=lambda x: (
+            x["normalized_score"],
+            x["hamming"],
+            x["priority"],
+            x["score"],
+            x["length_diff"],
+            x["target"],
+        )
+    )
 
-    return best
+    if top_k is not None:
+        return results[:top_k]
+
+    return results
 
 
 class PhonemeMapper:
