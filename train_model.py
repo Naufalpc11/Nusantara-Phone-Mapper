@@ -23,6 +23,38 @@ def parse_args():
     return parser.parse_args()
 
 
+def load_labeled_training_data(data):
+    """Muat format training data baru yang sudah memiliki label eksplisit."""
+    samples = []
+    labels = []
+    weights = []
+
+    for row in data:
+        inp = (row.get("input") or "").lower().strip()
+        tgt = (row.get("target") or "").lower().strip()
+        label = row.get("label")
+
+        if not inp or not tgt or label is None:
+            continue
+
+        confidence = float(row.get("confidence", 1.0))
+        samples.append((inp, tgt))
+        labels.append(float(label))
+        weights.append(confidence)
+
+    if not samples:
+        raise ValueError("training_data.json tidak memiliki pasangan berlabel yang valid.")
+
+    x_tensor = torch.tensor(
+        [encode_word(inp) + encode_word(tgt) for inp, tgt in samples],
+        dtype=torch.float32,
+    )
+    y_tensor = torch.tensor(labels, dtype=torch.float32).unsqueeze(1)
+    w_tensor = torch.tensor(weights, dtype=torch.float32).unsqueeze(1)
+    positive_count = sum(1 for label in labels if label == 1.0)
+    return x_tensor, y_tensor, w_tensor, len(samples), positive_count
+
+
 def load_training_data(path, negatives, seed):
     """Muat training data JSON lalu ubah ke tensor pasangan dan label."""
     with open(path, encoding="utf-8") as f:
@@ -30,6 +62,9 @@ def load_training_data(path, negatives, seed):
 
     if not data:
         raise ValueError("training_data.json kosong. Jalankan test_dataset.py dulu.")
+
+    if isinstance(data, list) and data and "label" in data[0]:
+        return load_labeled_training_data(data)
 
     inputs = [(row.get("input") or "").lower().strip() for row in data]
     targets = [(row.get("target") or "").lower().strip() for row in data]
@@ -60,7 +95,8 @@ def load_training_data(path, negatives, seed):
         dtype=torch.float32,
     )
     y_tensor = torch.tensor(labels, dtype=torch.float32).unsqueeze(1)
-    return x_tensor, y_tensor, len(pairs)
+    w_tensor = torch.ones_like(y_tensor)
+    return x_tensor, y_tensor, w_tensor, len(samples), len(pairs)
 
 
 def split_dataset(dataset, val_split, seed):
@@ -93,14 +129,15 @@ def evaluate(model, loader, loss_fn):
     correct = 0
 
     with torch.no_grad():
-        for batch_x, batch_y in loader:
+        for batch_x, batch_y, batch_w in loader:
             pred = model(batch_x)
             loss = loss_fn(pred, batch_y)
+            weighted_loss = (loss * batch_w).mean()
             probs = torch.sigmoid(pred)
             preds = (probs >= 0.5).float()
             correct += (preds == batch_y).sum().item()
             batch_size = batch_x.size(0)
-            running_loss += loss.item() * batch_size
+            running_loss += weighted_loss.item() * batch_size
             total_samples += batch_size
 
     if total_samples == 0:
@@ -114,13 +151,13 @@ def main():
     args = parse_args()
     torch.manual_seed(args.seed)
 
-    x_tensor, y_tensor, total_samples = load_training_data(
+    x_tensor, y_tensor, w_tensor, total_samples, total_positives = load_training_data(
         args.data_path,
         args.negatives,
         args.seed,
     )
 
-    dataset = TensorDataset(x_tensor, y_tensor)
+    dataset = TensorDataset(x_tensor, y_tensor, w_tensor)
     train_dataset, val_dataset = split_dataset(dataset, args.val_split, args.seed)
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
     val_loader = None
@@ -134,7 +171,7 @@ def main():
         nn.Linear(64, 1),
     )
 
-    loss_fn = nn.BCEWithLogitsLoss()
+    loss_fn = nn.BCEWithLogitsLoss(reduction="none")
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     train_loss_history = []
     val_loss_history = []
@@ -144,7 +181,7 @@ def main():
 
     print(
         "Start training | "
-        f"total_pairs={total_samples}, train_samples={train_samples}, "
+        f"total_pairs={total_samples}, positives={total_positives}, train_samples={train_samples}, "
         f"val_samples={val_samples}, batch_size={args.batch_size}, epochs={args.epochs}"
     )
 
@@ -152,15 +189,16 @@ def main():
         model.train()
         running_loss = 0.0
 
-        for batch_x, batch_y in train_loader:
+        for batch_x, batch_y, batch_w in train_loader:
             pred = model(batch_x)
             loss = loss_fn(pred, batch_y)
+            weighted_loss = (loss * batch_w).mean()
 
             optimizer.zero_grad()
-            loss.backward()
+            weighted_loss.backward()
             optimizer.step()
 
-            running_loss += loss.item() * batch_x.size(0)
+            running_loss += weighted_loss.item() * batch_x.size(0)
 
         train_loss = running_loss / train_samples
         val_loss, val_acc = evaluate(model, val_loader, loss_fn) if val_loader is not None else (None, None)
