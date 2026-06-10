@@ -1,12 +1,12 @@
 import argparse
 import json
 
-from services.baseline_builder import build_baseline_results
-from services.dataset_loader import load_tsv_sentences
-from services.evaluation import evaluate_with_seed_lexicon
-from services.phoneme_mapper import LEXICAL_MAP_ID_SU
-from services.pre_processing import extract_words
-from services.training_data_builder import build_training_examples
+from services.data.dataset_loader import load_tsv_sentences
+from services.data.pre_processing import extract_words
+from services.data.training_data_builder import build_training_examples
+from services.evaluation.baseline_builder import build_baseline_results
+from services.evaluation.evaluator import evaluate_with_seed_lexicon
+from services.phoneme.mapper import LEXICAL_MAP_ID_SU
 
 
 DEFAULT_INDO_PATH = "Nusantara-Phone-Mapper/dataset/indonesia/data/validated.tsv"

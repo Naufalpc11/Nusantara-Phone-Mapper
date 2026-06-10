@@ -1,3 +1,5 @@
+"""Dataset and batching utilities for audio-to-phoneme training."""
+
 import csv
 from pathlib import Path
 
@@ -5,8 +7,8 @@ import torch
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import Dataset
 
-from services.audio_features import load_audio, log_mel_spectrogram
-from services.audio_phonemes import transcript_to_phonemes
+from services.audio.features import load_audio, log_mel_spectrogram
+from services.audio.phonemes import transcript_to_phonemes
 
 
 def load_audio_manifest(path, limit=None):

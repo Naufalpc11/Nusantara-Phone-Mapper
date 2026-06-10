@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset, random_split
 
-from services.encoder import encode_word
+from services.similarity.encoder import encode_word
 
 
 def parse_args():

@@ -1,7 +1,9 @@
+"""Build labeled examples for the word-similarity model."""
+
 import hashlib
 import random
 
-from services.phoneme_mapper import LEXICAL_MAP_ID_SU, score_word_pair
+from services.phoneme.mapper import LEXICAL_MAP_ID_SU, score_word_pair
 
 
 def _stable_split(source_word):

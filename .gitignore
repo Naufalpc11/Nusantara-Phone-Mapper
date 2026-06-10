@@ -9,7 +9,20 @@
 
 # Generated pipeline artifacts
 /results.json
+/mapping_results.json
+/evaluation_results.json
 /training_data.json
 /loss_history.json
 /model_baseline.pt
+/model_similarity.pt
 /wu25l_interspeech.pdf
+
+# Audio training artifacts
+/audio_feature_cache/
+/audio_ctc_*.pt
+/audio_training_history*.json
+/audio_test_results*.json
+
+# Experiment output directories
+/checkpoints/
+/runs/

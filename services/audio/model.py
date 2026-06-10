@@ -1,3 +1,5 @@
+"""Neural model used by the audio-to-phoneme pipeline."""
+
 import torch
 import torch.nn as nn
 

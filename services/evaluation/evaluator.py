@@ -1,4 +1,6 @@
-from services.phoneme_mapper import rank_candidates
+"""Evaluate phoneme mapping against a seed lexicon."""
+
+from services.phoneme.mapper import rank_candidates
 
 
 def _safe_rate(numerator, denominator):

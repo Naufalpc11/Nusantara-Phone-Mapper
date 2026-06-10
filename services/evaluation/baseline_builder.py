@@ -1,4 +1,6 @@
-from services.phoneme_mapper import LEXICAL_MAP_ID_SU, rank_candidates
+"""Build rule-based baseline mapping results."""
+
+from services.phoneme.mapper import LEXICAL_MAP_ID_SU, rank_candidates
 
 
 def _candidate_preview(candidate, rank):

@@ -1,3 +1,5 @@
+"""Character-level encoding for the similarity model."""
+
 import string
 
 chars = list(string.ascii_lowercase)

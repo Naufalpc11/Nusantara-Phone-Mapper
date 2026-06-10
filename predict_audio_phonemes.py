@@ -5,11 +5,11 @@ from pathlib import Path
 
 import torch
 
-from services.audio_dataset import collate_audio_batch
-from services.audio_features import load_audio, log_mel_spectrogram
-from services.audio_metrics import ErrorRateAccumulator
-from services.audio_model import AudioCTCModel
-from services.audio_phonemes import (
+from services.audio.dataset import collate_audio_batch
+from services.audio.features import load_audio, log_mel_spectrogram
+from services.audio.metrics import ErrorRateAccumulator
+from services.audio.model import AudioCTCModel
+from services.audio.phonemes import (
     PhonemeVocabulary,
     greedy_ctc_decode,
     tokens_to_text,

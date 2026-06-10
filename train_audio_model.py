@@ -8,14 +8,14 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from services.audio_dataset import (
+from services.audio.dataset import (
     AudioPhonemeDataset,
     collate_audio_batch,
     load_audio_manifest,
 )
-from services.audio_metrics import ErrorRateAccumulator
-from services.audio_model import AudioCTCModel
-from services.audio_phonemes import (
+from services.audio.metrics import ErrorRateAccumulator
+from services.audio.model import AudioCTCModel
+from services.audio.phonemes import (
     PhonemeVocabulary,
     greedy_ctc_decode,
     tokens_to_text,

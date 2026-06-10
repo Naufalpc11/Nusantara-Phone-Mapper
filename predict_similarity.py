@@ -4,7 +4,7 @@ import json
 import torch
 import torch.nn as nn
 
-from services.encoder import encode_word
+from services.similarity.encoder import encode_word
 
 
 def parse_args():

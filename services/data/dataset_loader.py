@@ -1,6 +1,8 @@
+"""TSV dataset loading utilities."""
+
 import csv
 
-from services.pre_processing import extract_words as _extract_words
+from services.data.pre_processing import extract_words as _extract_words
 
 
 KNOWN_TEXT_COLUMNS = ("sentence", "transcription", "prompt", "text", "utterance")

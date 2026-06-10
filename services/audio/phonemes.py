@@ -1,9 +1,11 @@
+"""Phoneme tokenization and vocabulary utilities for audio training."""
+
 import json
 import re
 from pathlib import Path
 
-from services.ipa_id import word_to_phonemes
-from services.ipa_su import word_to_phonemes_su
+from services.phoneme.ipa_id import word_to_phonemes
+from services.phoneme.ipa_su import word_to_phonemes_su
 
 
 WORD_PATTERN = re.compile(r"[a-z']+")

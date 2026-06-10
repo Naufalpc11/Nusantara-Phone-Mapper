@@ -1,3 +1,5 @@
+"""Text normalization and word extraction utilities."""
+
 import re
 import unicodedata
 from collections import Counter

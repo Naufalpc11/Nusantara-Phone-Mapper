@@ -1,4 +1,6 @@
-from services.audio_phonemes import WORD_SEPARATOR
+"""Error-rate metrics for audio phoneme predictions."""
+
+from services.audio.phonemes import WORD_SEPARATOR
 
 
 def edit_distance(reference, hypothesis):

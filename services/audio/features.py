@@ -1,20 +1,30 @@
+"""Audio decoding and log-Mel feature extraction."""
+
 import math
 from functools import lru_cache
 
-import miniaudio
+import soundfile as sf
 import torch
 import torch.nn.functional as F
+import torchaudio.functional as audio_functional
 
 
 def load_audio(path, sample_rate=16000):
     """Decode MP3/FLAC audio as a mono float tensor."""
-    decoded = miniaudio.decode_file(
+    samples, source_sample_rate = sf.read(
         str(path),
-        output_format=miniaudio.SampleFormat.FLOAT32,
-        nchannels=1,
-        sample_rate=sample_rate,
+        dtype="float32",
+        always_2d=True,
     )
-    waveform = torch.frombuffer(decoded.samples, dtype=torch.float32).clone()
+    waveform = torch.from_numpy(samples).transpose(0, 1).mean(dim=0)
+
+    if source_sample_rate != sample_rate:
+        waveform = audio_functional.resample(
+            waveform,
+            source_sample_rate,
+            sample_rate,
+        )
+
     return waveform
 
 

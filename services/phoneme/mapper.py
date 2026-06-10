@@ -1,5 +1,10 @@
-from services.ipa_id import PHONEME_ID, phoneme_sequence as phoneme_sequence_id
-from services.ipa_su import PHONEME_SU, phoneme_sequence_su
+"""Rule-based Indonesian-to-Sundanese phoneme mapping."""
+
+from services.phoneme.ipa_id import (
+    PHONEME_ID,
+    phoneme_sequence as phoneme_sequence_id,
+)
+from services.phoneme.ipa_su import PHONEME_SU, phoneme_sequence_su
 
 
 IPA_INDEX_ID = {entry["ipa"]: entry for entry in PHONEME_ID.values()}
